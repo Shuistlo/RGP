@@ -27,7 +27,7 @@ public class GyroTesting {
 		//1. move foraward 20 mm
 		//2. measure error
 		//3. repeat
-		double rotation = 20/(37*Math.PI)*360;
+		double rotation = 20/(55*Math.PI)*360;
 
 		rightMotor.rotate((int) rotation);
 		leftMotor.rotate((int) rotation);
