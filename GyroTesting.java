@@ -8,7 +8,7 @@ import lejos.robotics.SampleProvider;
 
 public class GyroTesting {
 
-
+　
 	//Adjust as necessary
 	RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.B); //PORT C IS BROKE AS FUCK
@@ -19,25 +19,40 @@ public class GyroTesting {
 
 		GyroTesting test = new GyroTesting();
 		for(int i = 0; i <10; i++){
-			test.move();
+			//test.move();
 		}
 	}
 
-	public void move() {
+	public void move(int distance) {
 		//1. move foraward 20 mm
 		//2. measure error
 		//3. repeat
-		double rotation = 20/(55*Math.PI)*360;
+		double rotation = distance/(55*Math.PI)*360;
 
 		rightMotor.rotate((int) rotation);
 		leftMotor.rotate((int) rotation);
 		
-		System.out.println(gyrosensor.getAngleAndRateMode());
+		//COMMENTED OUT, REVIEW RELEVANCE LATER
+		
+		/*System.out.println(gyrosensor.getAngleAndRateMode());
 		//get the actual distance we moved from the gyro
 		//display the error
-		gyrosensor.reset();
+		gyrosensor.reset();*/
 
 	}
 
+	
+	public void turn90(double r) {
+		
+		int turnVal =(int)( 45 * (r/27.5));
+		
+		leftMotor.startSynchronization();
+		leftMotor.rotate(turnVal, true);
+		rightMotor.rotate(turnVal, true);
+		leftMotor.endSynchronization();
+		leftMotor.waitComplete();
+		rightMotor.waitComplete();
+		
+	}
 
 }
