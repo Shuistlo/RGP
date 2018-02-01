@@ -1,10 +1,7 @@
-
+　
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.SensorPort;
-import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.robotics.RegulatedMotor;
-import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
 public class GyroTesting {
@@ -12,10 +9,10 @@ public class GyroTesting {
 	//robot radius
 	private final double R = 45;
 	//wheel radius
-	private final double r = 45;
+	private final double r = 27.5;
 	//Adjust as necessary
 	RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-	RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.B); //PORT C IS BROKE AS FUCK
+	RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D); //PORT C IS BROKE AS FUCK
 	
 	//private EV3GyroSensor gyrosensor = new EV3GyroSensor(SensorPort.S3); //still need to add the port and sensor
 
@@ -23,14 +20,25 @@ public class GyroTesting {
 
 		GyroTesting test = new GyroTesting();
 		
+		/*for(int i = 0;i < 4;i++) {
+		
+			test.setMotorSpeed(50);
+			test.move(500);
+			test.turn(90);
+			test.move(500);
+			test.turn(90);
+			test.move(500);
+			test.turn(90);
+			test.move(500);
+			test.turn(90);
+		
+		}*/
+		test.setMotorSpeed(50);
 		for(int i = 0;i < 10;i++) {
-			test.move(20);
-			Delay.msDelay(10000);
+			test.move(-20);
+			Delay.msDelay(5000);
 		}
-		
-		
-	
-		
+			
 	}
 
 	public void move(int distance) {
@@ -39,13 +47,9 @@ public class GyroTesting {
 		//3. repeat
 		int rotation = (int) (distance/(55*Math.PI)*360);
 
-		//rightMotor.rotate((int) rotation);
-		//leftMotor.rotate((int) rotation);
-		leftMotor.setSpeed(50);
-		rightMotor.setSpeed(50);
 		leftMotor.startSynchronization();
-		leftMotor.rotate(rotation);
-		rightMotor.rotate(rotation);
+		leftMotor.rotate(rotation, true);
+		rightMotor.rotate(rotation, true);
 		leftMotor.endSynchronization();
 		leftMotor.waitComplete();
 		rightMotor.waitComplete();
@@ -60,22 +64,9 @@ public class GyroTesting {
 	}
 
 	
-public void turn90() {
+	public void turn(int deg) {
 		
-		int turnVal =(int)( 45 * (R/27.5));
-		
-		leftMotor.startSynchronization();
-		leftMotor.rotate(-turnVal, true);
-		rightMotor.rotate(turnVal, true);
-		leftMotor.endSynchronization();
-		leftMotor.waitComplete();
-		rightMotor.waitComplete();
-		
-	}
-	
-public void turnXDegrees(double turnX) {
-		
-		int turnVal =(int)( (turnX/2) * (R/27.5));
+		int turnVal =(int)( (deg/2) * (R/r));
 		
 		leftMotor.startSynchronization();
 		leftMotor.rotate(-turnVal, true);
@@ -86,5 +77,11 @@ public void turnXDegrees(double turnX) {
 		
 	}
 
-　
+	private void setMotorSpeed(int speed) {
+	
+		leftMotor.setSpeed(speed);
+		rightMotor.setSpeed(speed);
+	
+	}
+
 }
