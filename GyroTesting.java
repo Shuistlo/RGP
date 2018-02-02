@@ -20,24 +20,25 @@ public class GyroTesting {
 
 		GyroTesting test = new GyroTesting();
 		
-		/*for(int i = 0;i < 4;i++) {
+		for(int i = 0;i < 4;i++) {
 		
 			test.setMotorSpeed(50);
 			test.move(500);
-			test.turn(90);
+			test.turn(180);
 			test.move(500);
-			test.turn(90);
+			test.turn(180);
 			test.move(500);
-			test.turn(90);
+			test.turn(180);
 			test.move(500);
-			test.turn(90);
+			test.turn(180);
+			Delay.msDelay(5000);
 		
-		}*/
+		}/*
 		test.setMotorSpeed(50);
 		for(int i = 0;i < 10;i++) {
 			test.move(-20);
 			Delay.msDelay(5000);
-		}
+		}*/
 			
 	}
 
