@@ -24,13 +24,17 @@ public class GyroTesting {
 		
 			test.setMotorSpeed(50);
 			test.move(500);
-			test.turn(180);
+			test.turn(90);
+			test.turn(90);
 			test.move(500);
-			test.turn(180);
+			test.turn(90);
+			test.turn(90);
 			test.move(500);
-			test.turn(180);
+			test.turn(90);
+			test.turn(90);
 			test.move(500);
-			test.turn(180);
+			test.turn(90);
+			test.turn(90);
 			Delay.msDelay(5000);
 		
 		}/*
