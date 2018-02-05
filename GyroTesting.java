@@ -1,7 +1,11 @@
-　
+package project;
+
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.robotics.RegulatedMotor;
+import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
 public class GyroTesting {
@@ -14,30 +18,31 @@ public class GyroTesting {
 	RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D); //PORT C IS BROKE AS FUCK
 	
-	//private EV3GyroSensor gyrosensor = new EV3GyroSensor(SensorPort.S3); //still need to add the port and sensor
+	private EV3GyroSensor gyroSensor = new EV3GyroSensor(SensorPort.S3); //still need to add the port and sensor
+	private SampleProvider gyroMode = gyroSensor.getAngleMode();
+	private float[] gyroSample = new float[gyroMode.sampleSize()];
 
 	public static void main(String[] args) {
 
 		GyroTesting test = new GyroTesting();
+		//106 as parameter gives roughly 90 degrees (actually gives 91 degrees :'( )
 		
-		for(int i = 0;i < 4;i++) {
 		
-			test.setMotorSpeed(50);
-			test.move(500);
-			test.turn(90);
-			test.turn(90);
-			test.move(500);
-			test.turn(90);
-			test.turn(90);
-			test.move(500);
-			test.turn(90);
-			test.turn(90);
-			test.move(500);
-			test.turn(90);
-			test.turn(90);
-			Delay.msDelay(5000);
+		//for(int i = 0;i < 4;i++) {
+			
+			//test.testGyro();
+			//Delay.msDelay(1000);
+			test.setMotorSpeed(100);			
+			//test.move(1000);
+			test.turn(105);
+			//test.turn(106);
+			//test.move(1000);
+			//test.turn(106);
+			//test.turn(106);
+			Delay.msDelay(3000);
 		
-		}/*
+		//}
+		/*
 		test.setMotorSpeed(50);
 		for(int i = 0;i < 10;i++) {
 			test.move(-20);
@@ -59,6 +64,7 @@ public class GyroTesting {
 		leftMotor.waitComplete();
 		rightMotor.waitComplete();
 		
+		
 		//COMMENTED OUT, REVIEW RELEVANCE LATER
 		
 		/*System.out.println(gyrosensor.getAngleAndRateMode());
@@ -71,15 +77,41 @@ public class GyroTesting {
 	
 	public void turn(int deg) {
 		
-		int turnVal =(int)( (deg/2) * (R/r));
-		
+		int turnVal = (int)( (deg) * (R/r));
+		gyroMode.fetchSample(gyroSample, 0);
+		//leftMotor.rotate(-1000);
+		//rightMotor.rotate(1000);
+		gyroMode.fetchSample(gyroSample, 0);
 		leftMotor.startSynchronization();
 		leftMotor.rotate(-turnVal, true);
 		rightMotor.rotate(turnVal, true);
 		leftMotor.endSynchronization();
 		leftMotor.waitComplete();
 		rightMotor.waitComplete();
+		gyroMode.fetchSample(gyroSample, 0);
+		System.out.println(gyroSample[0]);
 		
+		/*while(gyroSample[0] < deg) {
+			
+			leftMotor.rotate(-2);
+			rightMotor.rotate(2);
+			gyroMode.fetchSample(gyroSample, 0);
+			
+		}*/
+		
+		//leftMotor.stop();
+		//rightMotor.stop();
+		//gyroMode.fetchSample(gyroSample, 0);
+		//System.out.println(gyroSample[0]);
+	}
+	
+	private void testGyro() {
+		
+		gyroMode.fetchSample(gyroSample, 0);
+		System.out.println(gyroSample[0]);
+		Delay.msDelay(3000);
+		gyroMode.fetchSample(gyroSample, 0);
+		System.out.println(gyroSample[0]);
 	}
 
 	private void setMotorSpeed(int speed) {
