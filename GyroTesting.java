@@ -3,7 +3,9 @@ package project;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
@@ -18,7 +20,9 @@ public class GyroTesting {
 	RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D); //PORT C IS BROKE AS FUCK
 	
-	private EV3GyroSensor gyroSensor = new EV3GyroSensor(SensorPort.S3); //still need to add the port and sensor
+	private EV3UltrasonicSensor ultraSensor = new EV3UltrasonicSensor(SensorPort.S1);
+	private EV3ColorSensor colorsensor = new EV3ColorSensor(SensorPort.S2);
+	private EV3GyroSensor gyroSensor = new EV3GyroSensor(SensorPort.S4); 
 	private SampleProvider gyroMode = gyroSensor.getAngleMode();
 	private float[] gyroSample = new float[gyroMode.sampleSize()];
 
@@ -27,21 +31,27 @@ public class GyroTesting {
 		GyroTesting test = new GyroTesting();
 		//106 as parameter gives roughly 90 degrees (actually gives 91 degrees :'( )
 		
-		
+		test.setMotorSpeed(100);			
+		test.move(80);
+		test.turn(90);
+		test.move(50);
+		test.turn(-135);
+		test.move(50);
 		//for(int i = 0;i < 4;i++) {
 			
 			//test.testGyro();
 			//Delay.msDelay(1000);
-			test.setMotorSpeed(100);			
-			//test.move(1000);
-			test.turn(105);
+			//test.setMotorSpeed(100);			
+			//test.move(500);
+			//test.turn(90                                                                                                                                                                                                                                                                                                                                                                                                        );
 			//test.turn(106);
 			//test.move(1000);
 			//test.turn(106);
 			//test.turn(106);
-			Delay.msDelay(3000);
+			//Delay.msDelay(1000);
 		
 		//}
+		
 		/*
 		test.setMotorSpeed(50);
 		for(int i = 0;i < 10;i++) {
