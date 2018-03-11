@@ -20,13 +20,7 @@ loop
  if neighbour is not in OPEN
  add neighbour to OPEN
 */
-/*Note that the grid is like below and the robot can go both straight and diagonal
-Grid:
- ST 0 0 0
- 0 0 0 0
- 0 0 BL 0
- 0 0 0 DE
-*/
+
 public class PathPlanning {
     public static final int DIAGONAL_COST = 2; //Cost for robot to go diagonal
     public static final int V_H_COST = 1; //Cost for robot to go straight
@@ -56,7 +50,7 @@ public class PathPlanning {
         }
     }
     //The grid for the robot to explore
-    Cell [][] grid = new Cell[5][5];
+    Cell [][] grid = new Cell[60][60];
     //The open and close list
     PriorityQueue<Cell> open;
     boolean closed[][];
@@ -224,7 +218,7 @@ for obstacles.
         }
         System.out.println();
 
-// Fill in the underlined place to perform the AStar function
+        // Fill in the underlined place to perform the AStar function
         AStar(); //
         //For visualization
         System.out.println("\nScores for cells: ");
