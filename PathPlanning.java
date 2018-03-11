@@ -88,7 +88,7 @@ public class PathPlanning {
             return;
         }
         // total cost for the target position
-        int t_final_cost =___________________;
+        int t_final_cost = gcost + heuristic(current, target);
         boolean inOpen = open.contains(target);
         if(!inOpen || t_final_cost<target.finalCost){
             target.finalCost = t_final_cost;
@@ -97,9 +97,9 @@ public class PathPlanning {
         }
     }
     public void AStar(){
-        //add the start location to open list.
-        open.add(grid[startI][startJ]);
-        Cell current;
+    //add the start location to open list.
+    open.add(grid[startI][startJ]);
+    Cell current;
     /* What while loop does:
      current = node in OPEN with the lowest f_cost
      remove current from OPEN
@@ -124,7 +124,7 @@ public class PathPlanning {
 
             // if current is the target node which means path has been found, return,
             //fill in the underlined places
-            if(current.equals(grid[____][____])){
+            if(current.equals(grid[endI][endJ])){
                 return;
             }
             Cell neighbour;
@@ -164,7 +164,7 @@ public class PathPlanning {
                     neighbour = grid[current.x+1][current.y+1];
 
                     //right type of cost for this situation
-                    checkAndUpdateCost(current, neighbour, current.finalCost+_________);
+                    checkAndUpdateCost(current, neighbour, current.finalCost+ DIAGONAL_COST);
                 }
             }
         }
@@ -225,7 +225,7 @@ for obstacles.
         System.out.println();
 
 // Fill in the underlined place to perform the AStar function
-        ______________; //
+        AStar(); //
         //For visualization
         System.out.println("\nScores for cells: ");
         for(int i=0;i<x;++i){
