@@ -22,8 +22,8 @@ loop
 */
 
 public class PathPlanning {
-    public static final int DIAGONAL_COST = 2; //Cost for robot to go diagonal
-    public static final int V_H_COST = 1; //Cost for robot to go straight
+    public static final int DIAGONAL_COST = 6; //
+    public static final int V_H_COST = 3; //Cost for robot to go straight
     //The class defining the grid cell with all the variables
     class Cell{
         int heuristicCost = 0; //Heuristic cost
@@ -122,39 +122,39 @@ public class PathPlanning {
                 return;
             }
             Cell neighbour;
-            if(current.x-1>=0){
-                neighbour = grid[current.x-1][current.y];
+            if(current.x-3>=0){
+                neighbour = grid[current.x-3][current.y];
                 checkAndUpdateCost(current, neighbour, current.finalCost+V_H_COST); // If
                 //the neighbour can be reached by going straight, use V_H_COST
-                if(current.y-1>=0){
-                    neighbour = grid[current.x-1][current.y-1];
+                if(current.y-3>=0){
+                    neighbour = grid[current.x-3][current.y-3];
                     checkAndUpdateCost(current, neighbour,
                             current.finalCost+DIAGONAL_COST); // If the neighbour can be reached by going diagonal, use
                     //DIAGONAL_COST
                 }
-                if(current.y+1<grid[0].length){
+                if(current.y+3<grid[0].length){
                     neighbour = grid[current.x-1][current.y+1];
                     checkAndUpdateCost(current, neighbour,
                             current.finalCost+DIAGONAL_COST);
                 }
             }
-            if(current.y-1>=0){
+            if(current.y-3>=0){
                 neighbour = grid[current.x][current.y-1];
                 checkAndUpdateCost(current, neighbour, current.finalCost+V_H_COST);
             }
-            if(current.y+1<grid[0].length){
+            if(current.y+3<grid[0].length){
                 neighbour = grid[current.x][current.y+1];
                 checkAndUpdateCost(current, neighbour, current.finalCost+V_H_COST);
             }
-            if(current.x+1<grid.length){
+            if(current.x+3<grid.length){
                 neighbour = grid[current.x+1][current.y];
                 checkAndUpdateCost(current, neighbour, current.finalCost+V_H_COST);
-                if(current.y-1>=0){
+                if(current.y-3>=0){
                     neighbour = grid[current.x+1][current.y-1];
                     checkAndUpdateCost(current, neighbour,
                             current.finalCost+DIAGONAL_COST);
                 }
-                if(current.y+1<grid[0].length){
+                if(current.y+3<grid[0].length){
                     neighbour = grid[current.x+1][current.y+1];
 
                     //right type of cost for this situation
@@ -163,89 +163,4 @@ public class PathPlanning {
             }
         }
     }
-    //The simulation test to test the performance of the AStar class
-     /*
-     Params :
-     tCase = test case No.
-     x, y = Board's dimensions
-     si, sj = start location's x and y coordinates
-     ei, ej = end location's x and y coordinates
-     int[][] blocked = array containing inaccessible cell coordinates
-     */
-    public void test(int tCase, int x, int y, int si, int sj, int ei, int ej,
-                            int[][] blocked){
-        System.out.println("\n\nTest Case #"+tCase);
-        //Reset the grid map, the closed list, open list
-        grid = new Cell[x][y];
-        closed = new boolean[x][y];
-        open = new PriorityQueue<>((Object o1, Object o2) -> {
-            Cell c1 = (Cell)o1;
-            Cell c2 = (Cell)o2;
-            return c1.finalCost<c2.finalCost?-1:
-                    c1.finalCost>c2.finalCost?1:0;
-        });
-
-        //Set start position
-        setStartCell(si, sj); //Setting to 0,0 by default. Will be useful for the UI part
-        //Set the destination
-        setEndCell(ei, ej);
-        for(int i=0;i<x;++i){
-            for(int j=0;j<y;++j){
-                grid[i][j] = new Cell(i, j);
-        //Calculate the heuristicCost for each Cell
-                grid[i][j].heuristicCost = Math.abs(i-endI)+Math.abs(j-endJ);
-            }
-        }
-        grid[si][sj].finalCost = 0;
-
-/*
-Set blocked cells. Simply set the cell values to null
-for obstacles.
-*/
-        for(int i=0;i<blocked.length;++i){
-            setBlocked(blocked[i][0], blocked[i][1]);
-        }
-        //Display initial grid map
-        System.out.println("Grid: ");
-        for(int i=0;i<x;++i){
-            for(int j=0;j<y;++j){
-                if(i==si&&j==sj)System.out.print("ST "); //Source
-                else if(i==ei && j==ej)System.out.print("DE "); //Destination
-                else if(grid[i][j]!=null)System.out.printf("%-3d ", 0);
-                else System.out.print("BL ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-
-        // Fill in the underlined place to perform the AStar function
-        AStar(); //
-        //For visualization
-        System.out.println("\nScores for cells: ");
-        for(int i=0;i<x;++i){
-            for(int j=0;j<x;++j){
-                if(grid[i][j]!=null)System.out.printf("%-3d ", grid[i][j].finalCost);
-                else System.out.print("BL ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        if(closed[endI][endJ]){
-            //Trace back the path
-            System.out.println("Path: ");
-            Cell current = grid[endI][endJ];
-            System.out.print(current);
-            while(current.parent!=null){
-                System.out.print(" -> "+current.parent);
-                current = current.parent;
-            }
-            System.out.println();
-        }else System.out.println("No possible path");
-    }
-    /*
-    public static void main(String[] args) throws Exception{
-        //The grid is 4*4, start position is [0,0], destination is [3,3], obstacle's
-        location is [2,2]
-        test(4, 4, 4, 0, 0, 3, 3, new int[][]{{2,2}});
-    }*/
 }
