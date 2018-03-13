@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 import java.util.Stack;
 import java.util.function.Consumer;
 
@@ -33,13 +35,13 @@ public class BoxMap {
 		action.accept(new Cell(_p));
 	}
 	
-	public Cell getCell(Point2D p) { 
+	public Cell getCell(Point p) {
 		if ((p.getX() < 0) || (p.getX() >= WIDTH) ||
 				(p.getY() < 0) || (p.getY() >= HEIGHT)) {
 			// System.out.println("ERROR LOCATION" + p.toString() + " FOR CELL");
 			return null;
 		}
-		return map_[p.getX()][p.getY()];
+		return map_[(int)p.getX()][(int)p.getY()];
 	}
 	
 	public void setBlock(int x, int y/*, boolean _b*/) { map_[x][y].setBlock(true); }
@@ -47,28 +49,28 @@ public class BoxMap {
 	/**
 	 * Set the block in the left-top to right-bottom.
 	 */
-	public void setBlock(Point2D _lt, Point2D _rb) {
-		for (int x = _lt.getX(); x < _rb.getX(); ++x) {
-			for (int y = _lt.getY(); y < _rb.getY(); ++y) {
+	public void setBlock(Point _lt, Point _rb) {
+		for (int x = (int)_lt.getX(); x < _rb.getX(); ++x) {
+			for (int y = (int)_lt.getY(); y < (int)_rb.getY(); ++y) {
 				setBlock(x, y);
 			}
 		}
 	}
-	public void setBlock(Point2D _lt, Point2D _rb, boolean _b) {
-		for (int x = _lt.getX(); x < _rb.getX(); ++x) {
-			for (int y = _lt.getY(); y < _rb.getY(); ++y) {
+	public void setBlock(Point _lt, Point _rb, boolean _b) {
+		for (int x = (int)_lt.getX(); x < (int)_rb.getX(); ++x) {
+			for (int y = (int)_lt.getY(); y < (int)_rb.getY(); ++y) {
 				setBlock(x, y, _b);
 			}
 		}
 	}
 	
-	public String printPath(Stack<Point2D> path) {
+	public String printPath(Stack<Point> path) {
 		String ret = "";
 		for (int w = 0; w < WIDTH; ++w) {
 			for (int h = 0; h < HEIGHT; ++h) {
 				if (map_[w][h].isBlock())
 					ret += "*";
-				else if (-1 != path.indexOf(new Point2D(w, h)))
+				else if (-1 != path.indexOf(new Point(w, h)))
 					ret += "-";
 				else
 					ret += "o";
@@ -104,9 +106,9 @@ public class BoxMap {
 		map.setBlock(0, 3);
 		map.setBlock(1, 1);
 		
-		map.setBlock(new Point2D(2,2), new Point2D(4,4));
+		map.setBlock(new unused.Point(2,2), new unused.Point(4,4));
 		
-//		map.forEachNeighbour(new Point2D(100, 100), (_p) -> {
+//		map.forEachNeighbour(new unused.Point(100, 100), (_p) -> {
 //			System.out.println("foreach: [" + _p.getX() + ", " + _p.getY() + "]");
 //		});
 		

@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -15,11 +17,11 @@ public class Astar {
 		
 		final int MOVE_COST = 1;
 		
-//		public AstarCell(Point2D _p) {
+//		public AstarCell(unused.Point _p) {
 //			super(_p);
 //		}
 //		
-//		public AstarCell(Point2D _c, AstarCell _p) {
+//		public AstarCell(unused.Point _c, AstarCell _p) {
 //			super(_c);
 //			
 //		}
@@ -49,7 +51,7 @@ public class Astar {
 		
 		public int f_cost() { return f_cost_; }
 		
-		public boolean equals(Point2D _p) {
+		public boolean equals(Point _p) {
 			return super.equals(_p);
 		}
 		
@@ -69,24 +71,24 @@ public class Astar {
 		}
 	}
 	
-	private Point2D[] neighbors = null;
+	private Point[] neighbors = null;
 	List<AstarCell>   opens_    = null;
 	List<AstarCell>   closes_   = null;
 	
 	public Astar() {
-		neighbors = new Point2D[8];
-		neighbors[0] = new Point2D(-1, -1);neighbors[1] = new Point2D(-1,  0);
-		neighbors[2] = new Point2D(-1, +1);neighbors[3] = new Point2D(+1, -1);
-		neighbors[4] = new Point2D(+1,  0);neighbors[5] = new Point2D(+1, +1);
-		neighbors[6] = new Point2D( 0, -1);neighbors[7] = new Point2D( 0, +1);
+		neighbors = new Point[8];
+		neighbors[0] = new Point(-1, -1);neighbors[1] = new Point(-1,  0);
+		neighbors[2] = new Point(-1, +1);neighbors[3] = new Point(+1, -1);
+		neighbors[4] = new Point(+1,  0);neighbors[5] = new Point(+1, +1);
+		neighbors[6] = new Point( 0, -1);neighbors[7] = new Point( 0, +1);
 		
 		opens_  = new ArrayList<AstarCell>();
 		closes_ = new ArrayList<AstarCell>();
 	}
 	
-    private int heuristic(Point2D current, Point2D target) {
-        return Math.abs(current.getX() - target.getX())
-        		+ Math.abs(current.getY() - target.getY());
+    private int heuristic(Point current, Point target) {
+        return (int) (Math.abs(current.getX() - target.getX())
+        		+ Math.abs(current.getY() - target.getY()));
     }
     
     ///! find the minimum cost cell, return it and remove it from opens.
@@ -107,7 +109,7 @@ public class Astar {
     	return min;
     }
 	
-	public Stack<Point2D> planning(BoxMap map, Point2D start, Point2D end) {
+	public Stack<Point> planning(BoxMap map, Point start, Point end) {
 		opens_.clear();
 		closes_.clear();
 		opens_.add(new AstarCell(map.getCell(start)));
@@ -120,7 +122,7 @@ public class Astar {
 			
 			///! The only place to exit while, if have a path.
 			if (curr_cell.equals(end)) {
-				Stack<Point2D> path = new Stack<Point2D>();
+				Stack<Point> path = new Stack<Point>();
 				do {
 					path.push(curr_cell);
 					curr_cell = curr_cell.parent;
@@ -131,7 +133,7 @@ public class Astar {
 			
 			closes_.add(curr_cell);
 			// for each neighbor
-			for (Point2D _n : neighbors) {
+			for (Point _n : neighbors) {
 				Cell _nbor = map.getCell(curr_cell.plus(_n));
 				if (null == _nbor) continue;
 				
@@ -177,18 +179,18 @@ public class Astar {
 		// test block 1
 		;
 		// test block 2
-		map.setBlock(new Point2D(2, 2), new Point2D(10, 10));
+		map.setBlock(new unused.Point(2, 2), new unused.Point(10, 10));
 		// test block 3
-		// map.setBlock(new Point2D(2, 2), new Point2D(6, 6));
+		// map.setBlock(new unused.Point(2, 2), new unused.Point(6, 6));
 		System.out.println(map);
 		
 		// test path 1
 		System.out.println("test path 1");
-		Point2D start = new Point2D(0, 0);
-		Point2D end   = new Point2D(11, 11);
+		unused.Point start = new unused.Point(0, 0);
+		unused.Point end   = new unused.Point(11, 11);
 		
 		Astar slover = new Astar();
-		Stack<Point2D> path = slover.planning(map, start, end);
+		Stack<unused.Point> path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");
 			return;
@@ -197,7 +199,7 @@ public class Astar {
 		System.out.println("The path:");
 		System.out.println(map.printPath(path));
 		
-		Point2D p = path.pop();
+		unused.Point p = path.pop();
 		System.out.print(p);
 		while (!path.isEmpty()) {
 			p = path.pop();
@@ -207,8 +209,8 @@ public class Astar {
 		
 		// test path 2
 		System.out.println("test path 2");
-		start = new Point2D(4, 1);
-		end   = new Point2D(19, 17);
+		start = new unused.Point(4, 1);
+		end   = new unused.Point(19, 17);
 		path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");
@@ -227,8 +229,8 @@ public class Astar {
 		
 		// test path 3
 		System.out.println("test path 3");
-		start = new Point2D(1, 2);
-		end   = new Point2D(19, 12);
+		start = new unused.Point(1, 2);
+		end   = new unused.Point(19, 12);
 		path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");

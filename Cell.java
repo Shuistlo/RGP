@@ -1,4 +1,6 @@
-public class Cell extends Point2D {
+import java.awt.Point;
+
+public class Cell extends Point {
 	private boolean is_block_ = false;
 	
 	public Cell(int x, int y) {
@@ -10,7 +12,7 @@ public class Cell extends Point2D {
 		is_block_ = is_block;
 	}
 	
-	public Cell(Point2D _l) {
+	public Cell(Point _l) {
 		super(_l);
 		
 		if ((_l.getX() < 0) || (_l.getY() < 0)) {
@@ -19,7 +21,7 @@ public class Cell extends Point2D {
 		}
 	}
 	
-	public Cell(Point2D _l, boolean is_block) {
+	public Cell(Point _l, boolean is_block) {
 		super(_l);
 		is_block_ = is_block;
 		
@@ -42,4 +44,8 @@ public class Cell extends Point2D {
 	public void setBlock(boolean _b) { is_block_ = _b; }
 	
 	public boolean isBlock() { return is_block_; }
+
+	public Point plus(Point n) {
+			return new Point( (int)(this.x + n.getX()),(int)(this.y + n.getY()));
+	}
 }

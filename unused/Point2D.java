@@ -1,3 +1,5 @@
+package unused;
+
 public class Point2D {
 	private int x_ = 0;
 	private int y_ = 0;
