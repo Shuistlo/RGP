@@ -1,6 +1,8 @@
 class Map {
 
 	private static final int SIZE = 60;
+	//distance between an inner obstacle and wall edge
+	private static final int DISTANCE_INNER = 140;
 	private int[][] map = new int[SIZE][SIZE];
 
 	public Map() {
@@ -14,8 +16,12 @@ class Map {
 		Map mapleStory = new Map();
 		mapleStory.insertObstacleRInner();
 		mapleStory.insertObstacleROuter();
-		mapleStory.insertObstacleLInner();
-		mapleStory.insertObstacleLOuter();
+		//mapleStory.insertObstacleLInner();
+		//mapleStory.insertObstacleLOuter();
+		//mapleStory.wallOffLeft(-1);
+		//mapleStory.wallOffRight(-1);
+
+		//mapleStory.addLocalisationStrip();
 
 		System.out.println(mapleStory.toString());
 
@@ -165,33 +171,79 @@ class Map {
 		}
 
 	}
+	//putting -1 as the parameter walls off the left side, putting 0 removes the wall
+	public void wallOffLeft(int val) {
+
+		for(int wall = 1; wall < 22;wall++) {
+
+			map[wall - 1][SIZE - wall - 1] = val;
+			map[wall][SIZE - wall - 1] = val;
+			map[wall + 1][SIZE - wall - 1] = val;
+
+		}
+
+	}
+	//same idea as above method
+	public void wallOffRight(int val) {
+
+		for(int wall = 37; wall < SIZE - 1;wall++) {
+
+			map[wall - 1][SIZE - wall - 1] = val;
+			map[wall][SIZE - wall - 1] = val;
+			map[wall + 1][SIZE - wall - 1] = val;
+
+		}
+
+	}
+
+	//for adding localisation strip, cosidering leaving this bit out
+	/*private void addLocalisationStrip() {
+
+		for(int i = 8;i < 39;i++) {
+
+			if(isRedVaules(i)) {
+
+				map[i][i] = -2;
+
+			}
+
+		}
+
+	}
+
+	private boolean isRedVaules(int index) {
+
+		if()
+
+	}*/
 
 	@Override
 	public String toString() {
 
 		String m = "";
 
-		/*for(int i = 0;i < SIZE;i++) {
+		for(int i = 0;i < SIZE;i++) {
 
 			if(i < 10) m += "[" + i + "] ";
 			else m += "[" + i + "]"; 
 
 		}
 
-		m += "\n";*/
+		m += "\n";
 
 		for(int i = 0; i < SIZE;i++) {
 
 			for(int j = 0; j < SIZE;j++) {
 
-				if(map[i][j] == -1) m += ("[X] ");
+				if(map[i][j] == -1) m += "[X] ";
 				else if(map[i][j] == 0) m += "[ ] ";
+				else if (map[i][j] == -2) m += "[R] ";
 				else m += "[0] ";
 
 			}
 
-			//m += "[" + i + "]\n\n";
-			m += "\n\n";
+			m += "[" + i + "]\n\n";
+			//m += "\n\n";
 
 		}
 
