@@ -1,20 +1,23 @@
+package Localization;
+
 import lejos.robotics.Color;
 
-public Localization {
+public class Localization {
 
-	public static final float SENSOR_FAIL = 0.8;
-	public static final float SENSOR_HIT = 0.2;
-	public static final float UNDERSHOOT = 0.1;
-	public static final float FORWARD = 0.9;
+	public static final double SENSOR_FAIL = 0.8;
+	public static final double SENSOR_HIT = 0.2;
+	public static final double UNDERSHOOT = 0.1;
+	public static final double FORWARD = 0.9;
 
-	//1 dimentional representation of the line the robot is travelling on.
+	//1 Dimensional representation of the line the robot is travelling on.
 	private static final Boolean[] LINE= {true, true, false, false, false, true, false, false, false, true, false, false, false, true, true, true, true, true, true, true, true, true};
 
 	//array to hold probabilities of each position.
-	private float[LINE.length-1] Pr;
+	private double[] Pr;
 
 	public Localization(){
-		for(float f : Pr){
+		Pr = new double[LINE.length -1];
+		for(double f : Pr){
 			f = 1/LINE.length;
 		}
 	}
@@ -25,11 +28,11 @@ public Localization {
 	*	@param colour	reading from colour sensor
 	*	@param move		boolean to see if robot is moving
 	*/
-	public float[] sensorFilter(float colour){
-		//constant for normalization of probabilities
+	public double[] sensorFilter(float colour){
+		//constant for normalisation of probabilities
 		int n = 0;
 
-
+　
 		//calculating probabilities in Pr after a sensor reading
 		for(int i = 0; i < LINE.length; i++){
 
@@ -44,15 +47,15 @@ public Localization {
 
 		}
 
-		//normalizing probabilities
-		for(float f : Pr){
+		//Normalising probabilities
+		for(double f : Pr){
 			f /= n;
 		}
 
 		return Pr;
 	}
 
-	public float[] motionUpdate(){
+	public double[] motionUpdate(){
 		for(int i = 0; i < LINE.length; i++){
 			if(i == 0){
 				Pr[i] *= UNDERSHOOT;
@@ -64,12 +67,12 @@ public Localization {
 		return Pr;
 	}
 
-	public Pair<int,int> robotLocation(float[] p){
-		float max;
+	public Cell robotLocation(double[] p){
+		double max;
 		int n;
 
-		for(float f : p){
-			float m;
+		for(double f : p){
+			double m;
 
 			if(f>m){
 				m = f;
@@ -88,7 +91,7 @@ public Localization {
 
 			for(;n<p.length;n++){
 				if(max>0.2){
-					//implement method to transpose location on line to location on main map
+					
 				}
 				return null;
 			}
