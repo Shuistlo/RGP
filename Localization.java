@@ -10,15 +10,15 @@ public class Localization {
 	public static final double FORWARD = 0.9;
 
 	//1 Dimensional representation of the line the robot is travelling on.
-	private static final Boolean[] LINE= {true, true, false, false, false, true, false, false, false, true, false, false, false, true, true, true, true, true, true, true, true, true};
+	private static final Boolean[] LINE= {true,true,false,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false,true,true,true};
 
 	//array to hold probabilities of each position.
 	private double[] Pr;
 
 	public Localization(){
 		Pr = new double[LINE.length -1];
-		for(double f : Pr){
-			f = 1/LINE.length;
+		for(double d : Pr){
+			d = 1/LINE.length;
 		}
 	}
 
@@ -37,7 +37,7 @@ public class Localization {
 		for(int i = 0; i < LINE.length; i++){
 
 			//if colour sensor reading matches the map reading
-			if(((colour == Color.BLUE) && LINE[i]) || !((colour == Color.BLUE) && !LINE[i])){
+			if(((colour < 0.1 && LINE[i]) || !((colour < 0.1) && !LINE[i]))){
 				Pr[i] = Pr[i] * SENSOR_HIT;
 				n += Pr[i];
 			} else {
@@ -48,8 +48,8 @@ public class Localization {
 		}
 
 		//Normalising probabilities
-		for(double f : Pr){
-			f /= n;
+		for(double d : Pr){
+			d = d/n;
 		}
 
 		return Pr;
@@ -67,17 +67,17 @@ public class Localization {
 		return Pr;
 	}
 
-	public Cell robotLocation(double[] p){
+	public Cell mapLocation(double[] p){
 		double max;
 		int n;
 
-		for(double f : p){
+		for(double d : p){
 			double m;
 
-			if(f>m){
-				m = f;
+			if(d>m){
+				m = d;
 				max = m;
-			} else if(f == m && m > 0){
+			} else if(d == m && m > 0){
 				n++;
 			}
 
@@ -91,7 +91,7 @@ public class Localization {
 
 			for(;n<p.length;n++){
 				if(max>0.2){
-					
+					//complete line-map integration
 				}
 				return null;
 			}
