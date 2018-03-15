@@ -12,9 +12,9 @@ public class Astar {
 		public int g_cost_ = 0;
 		public int h_cost_ = 0;
 		public int f_cost_ = 0;
-		
+		//???
 		public AstarCell parent = null;
-		
+		//change according to needs and double this value for diagonal move cost
 		final int MOVE_COST = 1;
 		
 //		public AstarCell(unused.Point _p) {
