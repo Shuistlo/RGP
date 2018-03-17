@@ -33,7 +33,7 @@ public class AstarCell extends Cell implements Comparable<AstarCell> {
 
 	}
 
-	public void setBool(boolean _b) {
+	public void setBlock(boolean _b) {
 
 		setBlock(_b);
 		if(_b) {f_cost_ = Integer.MAX_VALUE;}
