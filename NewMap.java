@@ -3,6 +3,9 @@ class NewMap {
 
 	private static final int SIZE = 30;
 	private int[][] map = new int[SIZE][SIZE];
+	//if blue is true, obstacle blueInner is on the map else blueOuter
+	//if redGreen is true, the red obstacle is present, else green
+	private boolean blue = true, redGreen = true;
 
 	public NewMap() {
 
@@ -17,6 +20,10 @@ class NewMap {
 		mapleStory.insertBlueOuter(true);
 		mapleStory.insertGreenObstacle(true);
 		mapleStory.insertRedObstacle(true);
+		//mapleStory.wallOffLeft(true);
+		mapleStory.wallOffRight(true);
+		//mapleStory.wallOffLeft(false);
+		mapleStory.wallOffRight(false);
 		System.out.println(mapleStory.toString());
 
 	}
@@ -157,6 +164,68 @@ class NewMap {
 
 	}
 
+	public void wallOffLeft(boolean wallVal) {
+
+		if(wallVal) {
+
+			for(int wall = 19; wall < SIZE - 1;wall++) {
+
+				map[wall - 1][SIZE - wall - 1] = -1;
+				map[wall][SIZE - wall - 1] = -1;
+				map[wall + 1][SIZE - wall - 1] = -1;
+
+			}
+
+		} else {
+
+			for(int wall = 19; wall < SIZE - 1;wall++) {
+
+				map[wall - 1][SIZE - wall - 1] = 0;
+				map[wall][SIZE - wall - 1] = 0;
+				map[wall + 1][SIZE - wall - 1] = 0;
+				if(blue) {insertBlueInner(true);}
+				else {insertBlueOuter(true);}
+			}
+
+		}
+
+	}
+
+
+	public void wallOffRight(boolean wallVal) {
+
+		if(wallVal) {
+
+			for(int wall = 1; wall < 11;wall++) {
+
+				map[wall - 1][SIZE - wall - 1] = -1;
+				map[wall][SIZE - wall - 1] = -1;
+				map[wall + 1][SIZE - wall - 1] = -1;
+
+			}
+
+		} else {
+
+			for(int wall = 1; wall < 11;wall++) {
+
+				map[wall - 1][SIZE - wall - 1] = 0;
+				map[wall][SIZE - wall - 1] = 0;
+				map[wall + 1][SIZE - wall - 1] = 0;
+				map[SIZE - 1][1] = -1;
+				if(redGreen) {insertRedObstacle(true);}
+				else {insertGreenObstacle(true);}
+
+			}
+
+		}
+
+	}
+
+	public int[][] getMap() {
+
+		return map;
+
+	}
 
 	@Override
 	public String toString() {

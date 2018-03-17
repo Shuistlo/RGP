@@ -1,7 +1,7 @@
 import java.awt.Point;
 
 public class Cell extends Point {
-	private boolean is_block_ = false;
+	private boolean is_block_ = false, is_goal_ = false;
 	
 	public Cell(int x, int y) {
 		super(x, y);
@@ -44,6 +44,10 @@ public class Cell extends Point {
 	public void setBlock(boolean _b) { is_block_ = _b; }
 	
 	public boolean isBlock() { return is_block_; }
+
+	public void setGoal(boolean b) { is_goal_ = b;}
+
+	public boolean isGoal() { return is_goal_;}
 
 	public Point plus(Point n) {
 			return new Point( (int)(this.x + n.getX()),(int)(this.y + n.getY()));

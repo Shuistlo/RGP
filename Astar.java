@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class Astar {
 
-	public class AstarCell extends Cell implements Comparable<AstarCell> {
+	/*public class AstarCell extends Cell implements Comparable<AstarCell> {
 		public int g_cost_ = 0;
 		public int h_cost_ = 0;
 		public int f_cost_ = 0;
@@ -36,7 +36,7 @@ public class Astar {
 		 * @param _p     The parent
 		 * @param h_cost The H cost
 		 */
-		public AstarCell(Cell _c, AstarCell _p, int h_cost) {
+		/*public AstarCell(Cell _c, AstarCell _p, int h_cost) {
 			super(_c);
 			parent = _p;
 			
@@ -53,14 +53,14 @@ public class Astar {
 		
 		public boolean equals(Point _p) {
 			return super.equals(_p);
-		}
+		}*/
 		
 		/**
 		 * If this.f > _o.f, return -1;
 		 * If this.f = _o,f, return  0;
 		 * If this.f < _o.f, return +1;
 		 */
-		@Override
+		/*@Override
 		public int compareTo(AstarCell _o) {
 			if (f_cost_ == _o.f_cost_)
 				return 0;
@@ -69,7 +69,7 @@ public class Astar {
 			else
 				return -1;
 		}
-	}
+	}*/
 	
 	private Point[] neighbors = null;
 	List<AstarCell>   opens_    = null;
