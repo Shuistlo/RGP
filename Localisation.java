@@ -7,7 +7,7 @@ public class Localisation {
 	public static final double THRESHOLD = 0.1;
 
 	//1 Dimensional representation of the line the robot is travelling on.
-	private final Boolean[] LINE= {true,true,false,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false,true,true,true};
+	private final boolean[] LINE= {true,true,false,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false,true,true,true};
 
 	//array to hold probabilities of each position.
 	private double[] Pr = new double[LINE.length];
