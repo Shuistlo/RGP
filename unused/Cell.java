@@ -1,3 +1,5 @@
+package unused;
+
 import java.awt.Point;
 
 public class Cell extends Point {

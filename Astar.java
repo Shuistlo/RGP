@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class Astar {
 
-	/*public class AstarCell extends Cell implements Comparable<AstarCell> {
+	/*public class AstarCell extends unused.Cell implements Comparable<AstarCell> {
 		public int g_cost_ = 0;
 		public int h_cost_ = 0;
 		public int f_cost_ = 0;
@@ -26,7 +26,7 @@ public class Astar {
 //			
 //		}
 //		
-		public AstarCell(Cell _c) {
+		public AstarCell(unused.Cell _c) {
 			super(_c);
 			if (_c.isBlock()) f_cost_ = Integer.MAX_VALUE;
 		}
@@ -36,7 +36,7 @@ public class Astar {
 		 * @param _p     The parent
 		 * @param h_cost The H cost
 		 */
-		/*public AstarCell(Cell _c, AstarCell _p, int h_cost) {
+		/*public AstarCell(unused.Cell _c, AstarCell _p, int h_cost) {
 			super(_c);
 			parent = _p;
 			
@@ -134,10 +134,10 @@ public class Astar {
 			closes_.add(curr_cell);
 			// for each neighbor
 			for (Point _n : neighbors) {
-				Cell _nbor = map.getCell(curr_cell.plus(_n));
+				AstarCell _nbor = map.getCell(curr_cell.plus(_n));
 				if (null == _nbor) continue;
 				
-				AstarCell nbor_cell = new AstarCell(_nbor, curr_cell, heuristic(_nbor, end));
+				AstarCell nbor_cell = new AstarCell((int)_nbor.getX(), (int)_nbor.getY(), curr_cell, _nbor.isBlock(), heuristic(_nbor, end));
 				int index_open  = opens_.indexOf(_nbor);
 				int index_close = closes_.indexOf(_nbor);
 				///! not in opens and not in closes

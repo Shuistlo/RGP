@@ -1,3 +1,5 @@
+import unused.Cell;
+
 import java.awt.Point;
 
 import java.util.Stack;
@@ -48,7 +50,7 @@ public class BoxMap {
 		action.accept(new Cell(_p));
 	}
 	
-	public Cell getCell(Point p) {
+	public AstarCell getCell(Point p) {
 		if ((p.getX() < 0) || (p.getX() >= SIZE) ||
 				(p.getY() < 0) || (p.getY() >= SIZE)) {
 			// System.out.println("ERROR LOCATION" + p.toString() + " FOR CELL");

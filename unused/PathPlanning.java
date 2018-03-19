@@ -59,7 +59,7 @@ public class PathPlanning {
     //x and y coordinates of the start and target position
     int startI, startJ;
     int endI, endJ;
-    //Blocked cells are just null Cell values in grid, resemble the obstacles
+    //Blocked cells are just null unused.Cell values in grid, resemble the obstacles
     public void setBlocked(int i, int j){
         grid[i][j] = null;
     }

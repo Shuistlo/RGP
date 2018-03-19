@@ -1,3 +1,5 @@
+import unused.Cell;
+
 public class Localisation {
 
 	public static final double SENSOR_FAIL = 0.8;
@@ -64,7 +66,7 @@ public class Localisation {
 		}
 	}
 
-	public Cell mapLocation(){
+	public AstarCell mapLocation(){
 
 		double max = 0;
 		int n = 0;
@@ -81,15 +83,15 @@ public class Localisation {
 			for(n = 0; n<Pr.length; n++){
 				if(Pr[n] == max && max > 0.10f){
 					if(n>28){
-						return new AStarCell(7,6);
+						return new AstarCell(7,6);
 					} else if(n>22){
-						return new AStarCell(8,5);
+						return new AstarCell(8,5);
 					} else if(n>16){
-						return new AStarCell(9,4);
+						return new AstarCell(9,4);
 					} else if(n>10){
-						return new AStarCell(10,3);
+						return new AstarCell(10,3);
 					} else if(n>4){
-						return new AStarCell(11,2);
+						return new AstarCell(11,2);
 					}
 				}
 			}
