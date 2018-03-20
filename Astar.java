@@ -113,7 +113,7 @@ public class Astar {
 	public static void main(String[] args) {
 		BoxMap map = new BoxMap();
 		// test block 1
-		;
+		//#metoo #time'sup #genderisover #78centsforeverydollar
 		// test block 2
 		map.setBlock(new Point(2, 2), new Point(10, 10));
 		// test block 3
