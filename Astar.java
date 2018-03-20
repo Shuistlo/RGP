@@ -109,24 +109,24 @@ public class Astar {
 	
 	
 	
-		/*! Just for debug BoxMap
+		// Just for debug BoxMap
 	public static void main(String[] args) {
-		BoxMap map = new BoxMap(20, 20);
+		BoxMap map = new BoxMap();
 		// test block 1
 		;
 		// test block 2
-		map.setBlock(new unused.Point(2, 2), new unused.Point(10, 10));
+		map.setBlock(new Point(2, 2), new Point(10, 10));
 		// test block 3
-		// map.setBlock(new unused.Point(2, 2), new unused.Point(6, 6));
+		// map.setBlock(new Point(2, 2), new Point(6, 6));
 		System.out.println(map);
 		
 		// test path 1
 		System.out.println("test path 1");
-		unused.Point start = new unused.Point(0, 0);
-		unused.Point end   = new unused.Point(11, 11);
+		Point start = new Point(0, 0);
+		Point end   = new Point(11, 11);
 		
 		Astar slover = new Astar();
-		Stack<unused.Point> path = slover.planning(map, start, end);
+		Stack<Point> path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");
 			return;
@@ -135,7 +135,7 @@ public class Astar {
 		System.out.println("The path:");
 		System.out.println(map.printPath(path));
 		
-		unused.Point p = path.pop();
+		Point p = path.pop();
 		System.out.print(p);
 		while (!path.isEmpty()) {
 			p = path.pop();
@@ -145,8 +145,8 @@ public class Astar {
 		
 		// test path 2
 		System.out.println("test path 2");
-		start = new unused.Point(4, 1);
-		end   = new unused.Point(19, 17);
+		start = new Point(4, 1);
+		end   = new Point(19, 17);
 		path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");
@@ -165,8 +165,8 @@ public class Astar {
 		
 		// test path 3
 		System.out.println("test path 3");
-		start = new unused.Point(1, 2);
-		end   = new unused.Point(19, 12);
+		start = new Point(1, 2);
+		end   = new Point(19, 12);
 		path = slover.planning(map, start, end);
 		if (null == path) {
 			System.out.println("Could not found the path!");
@@ -183,6 +183,6 @@ public class Astar {
 			System.out.print("->" + p);
 		}
 	}
-	*/
+	
 	
 }
