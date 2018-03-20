@@ -117,7 +117,7 @@ public class Astar {
 		// test block 2
 		map.setBlock(new Point(2, 2), new Point(10, 10));
 		// test block 3
-		// map.setBlock(new Point(2, 2), new Point(6, 6));
+		map.setBlock(new Point(3, 3), new Point(6, 6));
 		System.out.println(map);
 		
 		// test path 1
@@ -144,6 +144,7 @@ public class Astar {
 		System.out.println();
 		
 		// test path 2
+		/*
 		System.out.println("test path 2");
 		start = new Point(4, 1);
 		end   = new Point(19, 17);
@@ -162,7 +163,7 @@ public class Astar {
 			p = path.pop();
 			System.out.print("->" + p);
 		}
-		
+		*/
 		// test path 3
 		System.out.println("test path 3");
 		start = new Point(1, 2);
