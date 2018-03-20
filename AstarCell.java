@@ -45,7 +45,7 @@ public class AstarCell extends Point implements Comparable<AstarCell> {
 
 	public void setBlock(boolean _b) {
 
-		super.setBlock(_b);
+		isBlock = _b;
 		if(_b) {f_cost_ = Integer.MAX_VALUE;}
 		else {f_cost_ = 0;}
 
