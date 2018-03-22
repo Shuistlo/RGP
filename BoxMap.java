@@ -136,22 +136,6 @@ public class BoxMap {
 
 		}
 
-		/*if(addRemove) {
-
-			map[7][20].setBlock(true); map[7][21].setBlock(true); map[7][22].setBlock(true); 
-			map[8][20].setBlock(true); map[8][21].setBlock(true); map[8][22].setBlock(true);
-			map[9][20].setBlock(true); map[9][21].setBlock(true); map[9][22].setBlock(true); 
-
-		}
-
-		else {
-			//outer left side obstacle
-			map[7][20].setBlock(false); map[7][21].setBlock(false); map[7][22].setBlock(false); 
-			map[8][20].setBlock(false); map[8][21].setBlock(false); map[8][22].setBlock(false);
-			map[9][20].setBlock(false); map[9][21].setBlock(false); map[9][22].setBlock(false); 
-
-		}*/
-
 	}
 
 	public void insertBlueOuter(boolean addRemove) {
@@ -181,20 +165,6 @@ public class BoxMap {
 			}
 
 		}
-
-		/*if(addRemove) {
-
-			map[4][23].setBlock(true); map[4][24].setBlock(true); map[4][25].setBlock(true);
-			map[5][23].setBlock(true); map[5][24].setBlock(true); map[5][25].setBlock(true);
-			map[6][23].setBlock(true); map[6][24].setBlock(true); map[6][25].setBlock(true); 
-
-		} else {
-
-			map[4][23].setBlock(false); map[4][24].setBlock(false); map[4][25].setBlock(false);
-			map[5][23].setBlock(false); map[5][24].setBlock(false); map[5][25].setBlock(false);
-			map[6][23].setBlock(false); map[6][24].setBlock(false); map[6][25].setBlock(false); 
-
-		}*/
 
 	}
 
