@@ -15,6 +15,8 @@ import java.util.function.Consumer;
  *          |
  *          x
  */
+
+//IMPORTANT - SETTING BLUE TO TRUE TELLS THE MAP THAT THE BLUE OBSTACLE IS PRESENT
 public class BoxMap {	
 	///! the data of map
 	private static final int SIZE  = 30;
@@ -22,7 +24,7 @@ public class BoxMap {
 	private NewMap mapModel = new NewMap();
 	//if blue = true, blue inner obstacle is present else blue outer
 	//redGreen = true means red obstacle is present else green
-	private boolean blue = true, redGreen = true;
+	private boolean blue = false, redGreen = false;
 	//removed the parameters as they were not necessary
 	public BoxMap() {
 		//creating empty BoxMap of Coordinates
@@ -42,7 +44,10 @@ public class BoxMap {
 
 		}
 
+		thicken();
 		map[15][25].setGoal(true);
+		if(blue) {insertBlueInner(true);}
+		else {insertBlueOuter(true);}
 
 	}
 	
@@ -96,7 +101,7 @@ public class BoxMap {
 				if (map[w][h].isBlock())
 					ret += "[X] ";
 				else if (-1 != path.indexOf(new Point(w, h)))
-					ret += "[-] ";
+					ret += "[8] ";
 				else if(map[w][h].isGoal())
 					ret += "[G] ";
 				else
@@ -248,10 +253,11 @@ public class BoxMap {
 				map[wall][SIZE - wall - 1].setBlock(false);
 				map[wall + 1][SIZE - wall - 1].setBlock(false);
 				map[SIZE - 1][1].setBlock(true);
-				if(redGreen) {insertRedObstacle(true);}
-				else {insertGreenObstacle(true);}
-				
+
 			}
+
+				if(redGreen) {insertRedObstacle(true);}
+				else {insertGreenObstacle(true);}				
 
 		}
 
@@ -278,10 +284,11 @@ public class BoxMap {
 				map[wall][SIZE - wall - 1].setBlock(false);
 				map[wall + 1][SIZE - wall - 1].setBlock(false);
 				map[0][SIZE - 2].setBlock(true);
-				if(blue) {insertBlueInner(true);}
-				else {insertBlueOuter(true);}
 
 			}
+
+			if(blue) {insertBlueInner(true);}
+			else {insertBlueOuter(true);}
 
 		}
 
@@ -305,6 +312,18 @@ public class BoxMap {
 
 		map[18][10].setBlock(true); map[19][10].setBlock(true); map[19][11].setBlock(true);
 		map[20][11].setBlock(true); map[20][12].setBlock(true); map[19][12].setBlock(true); map[20][10].setBlock(true); 
+
+	}
+
+	public void setRed() {
+
+		redGreen = true;
+
+	}
+
+	public void setGreen() {
+
+		redGreen = false;
 
 	}
 
