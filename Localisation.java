@@ -1,4 +1,4 @@
-import unused.Cell;
+package project;
 
 public class Localisation {
 
@@ -6,7 +6,7 @@ public class Localisation {
 	public static final double SENSOR_HIT = 0.2;
 	public static final double UNDERSHOOT = 0.1;
 	public static final double FORWARD = 0.9;
-	public static final double THRESHOLD = 0.1;
+	public static final double THRESHOLD = 0.2;
 
 	//1 Dimensional representation of the line the robot is travelling on.
 	private final boolean[] LINE= {true,true,false,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false,true,true,true};
@@ -61,9 +61,11 @@ public class Localisation {
 	}
 	
 	public void printProbArray(){
+		System.out.print("[");
 		for(double d : Pr){
 			System.out.print(d+", ");
 		}
+		System.out.print("] \n");
 	}
 
 	public AstarCell mapLocation(){
@@ -81,17 +83,23 @@ public class Localisation {
 
 		if(n==1){
 			for(n = 0; n<Pr.length; n++){
-				if(Pr[n] == max && max > 0.10f){
+				if(Pr[n] == max){
 					if(n>28){
-						return new AstarCell(7,6);
+						return new AstarCell(12,12);
+					} else if(n>25){
+						return new AstarCell(11,11);
 					} else if(n>22){
-						return new AstarCell(8,5);
+						return new AstarCell(10,10);
+					} else if(n>19){
+						return new AstarCell(9,9);
 					} else if(n>16){
-						return new AstarCell(9,4);
+						return new AstarCell(8,8);
+					} else if(n>13){
+						return new AstarCell(7,7);
 					} else if(n>10){
-						return new AstarCell(10,3);
-					} else if(n>4){
-						return new AstarCell(11,2);
+						return new AstarCell(6,6);
+					} else {
+						return new AstarCell(5,5);
 					}
 				}
 			}
