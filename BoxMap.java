@@ -81,37 +81,76 @@ public class BoxMap {
 	
 	public String printPath(Stack<Point> path) {
 		String ret = "";
+
+		for(int i = 0;i < SIZE;i++) {
+
+			if(i < 10) ret += "[" + i + "] ";
+			else ret += "[" + i + "]"; 
+
+		}
+
+		ret += "\n";
+
 		for (int w = 0; w < SIZE; ++w) {
 			for (int h = 0; h < SIZE; ++h) {
 				if (map[w][h].isBlock())
-					ret += "*";
+					ret += "[X] ";
 				else if (-1 != path.indexOf(new Point(w, h)))
-					ret += "-";
+					ret += "[-] ";
+				else if(map[w][h].isGoal())
+					ret += "[G] ";
 				else
-					ret += "o";
+					ret += "[ ] ";
 			}
-			ret += "\n";
+			ret += "[" + w + "]\n\n";
 		}
 		return ret;
 	}
 
 	public void insertBlueInner(boolean addRemove) {
 		//inner left side obstacle
+
 		if(addRemove) {
 
-			map[7][21].setBlock(true);
+			for(int i = 6;i < 11; i++) {
+
+				for(int j = 19;j < 24; j++) {
+
+					map[i][j].setBlock(true);
+
+				}
+
+			}
+
+		} else {
+
+			for(int i = 6;i < 11; i++) {
+
+				for(int j = 19;j < 24; j++) {
+
+					map[i][j].setBlock(false);
+
+				}
+
+			}
+
+		}
+
+		/*if(addRemove) {
+
+			map[7][20].setBlock(true); map[7][21].setBlock(true); map[7][22].setBlock(true); 
 			map[8][20].setBlock(true); map[8][21].setBlock(true); map[8][22].setBlock(true);
-			map[9][21].setBlock(true);
+			map[9][20].setBlock(true); map[9][21].setBlock(true); map[9][22].setBlock(true); 
 
 		}
 
 		else {
 			//outer left side obstacle
-			map[7][21].setBlock(false);
+			map[7][20].setBlock(false); map[7][21].setBlock(false); map[7][22].setBlock(false); 
 			map[8][20].setBlock(false); map[8][21].setBlock(false); map[8][22].setBlock(false);
-			map[9][21].setBlock(false);
+			map[9][20].setBlock(false); map[9][21].setBlock(false); map[9][22].setBlock(false); 
 
-		}
+		}*/
 
 	}
 
@@ -119,17 +158,43 @@ public class BoxMap {
 
 		if(addRemove) {
 
-			map[4][24].setBlock(true);
-			map[5][23].setBlock(true); map[5][24].setBlock(true); map[5][25].setBlock(true);
-			map[6][24].setBlock(true);
+			for(int i = 3;i < 8; i++) {
+
+				for(int j = 22;j < 27; j++) {
+
+					map[i][j].setBlock(true);
+
+				}
+
+			}
 
 		} else {
 
-			map[4][24].setBlock(false);
-			map[5][23].setBlock(false); map[5][24].setBlock(false); map[5][25].setBlock(false);
-			map[6][24].setBlock(false);
+			for(int i = 3;i < 8; i++) {
+
+				for(int j = 22;j < 27; j++) {
+
+					map[i][j].setBlock(false);
+
+				}
+
+			}
 
 		}
+
+		/*if(addRemove) {
+
+			map[4][23].setBlock(true); map[4][24].setBlock(true); map[4][25].setBlock(true);
+			map[5][23].setBlock(true); map[5][24].setBlock(true); map[5][25].setBlock(true);
+			map[6][23].setBlock(true); map[6][24].setBlock(true); map[6][25].setBlock(true); 
+
+		} else {
+
+			map[4][23].setBlock(false); map[4][24].setBlock(false); map[4][25].setBlock(false);
+			map[5][23].setBlock(false); map[5][24].setBlock(false); map[5][25].setBlock(false);
+			map[6][23].setBlock(false); map[6][24].setBlock(false); map[6][25].setBlock(false); 
+
+		}*/
 
 	}
 
@@ -137,15 +202,27 @@ public class BoxMap {
 
 		if(addRemove) {
 
-			map[20][8].setBlock(true);
-			map[21][7].setBlock(true); map[21][8].setBlock(true); map[21][9].setBlock(true);
-			map[22][8].setBlock(true);
+			for(int i = 19;i < 24; i++) {
+
+				for(int j = 6;j < 11; j++) {
+
+					map[i][j].setBlock(true);
+
+				}
+
+			}
 
 		} else {
 
-			map[20][8].setBlock(false);
-			map[21][7].setBlock(false); map[21][8].setBlock(false); map[21][9].setBlock(false);
-			map[22][8].setBlock(false);
+			for(int i = 19;i < 24; i++) {
+
+				for(int j = 6;j < 11; j++) {
+
+					map[i][j].setBlock(false);
+
+				}
+
+			}
 
 		}
 
@@ -155,15 +232,27 @@ public class BoxMap {
 
 		if(addRemove) {
 
-			map[24][4].setBlock(true);
-			map[23][5].setBlock(true); map[24][5].setBlock(true); map[25][5].setBlock(true);
-			map[24][6].setBlock(true);
+			for(int i = 22;i < 27; i++) {
+
+				for(int j = 3;j < 8; j++) {
+
+					map[i][j].setBlock(true);
+
+				}
+
+			}
 
 		} else {
 
-			map[24][4].setBlock(false);
-			map[23][5].setBlock(false); map[24][5].setBlock(false); map[25][5].setBlock(false);
-			map[24][6].setBlock(false);
+			for(int i = 22;i < 27; i++) {
+
+				for(int j = 3;j < 8; j++) {
+
+					map[i][j].setBlock(false);
+
+				}
+
+			}
 
 		}
 
@@ -228,9 +317,40 @@ public class BoxMap {
 
 	}
 
+	public void thicken() {
+
+		for(int i = 11;i < 19;++i) {
+
+			for(int j = 12; j < 18;++j) {
+
+				map[i][j].setBlock(true);
+
+			}
+
+		}
+
+		map[9][17].setBlock(true); map[9][18].setBlock(true); map[9][19].setBlock(true);
+		map[10][17].setBlock(true); map[10][18].setBlock(true); map[10][19].setBlock(true);
+		map[11][19].setBlock(true);
+
+		map[18][10].setBlock(true); map[19][10].setBlock(true); map[19][11].setBlock(true);
+		map[20][11].setBlock(true); map[20][12].setBlock(true); map[19][12].setBlock(true); map[20][10].setBlock(true); 
+
+	}
+
 	@Override
 	public String toString() {
 		String ret = "";
+
+		for(int i = 0;i < SIZE;i++) {
+
+			if(i < 10) ret += "[" + i + "] ";
+			else ret += "[" + i + "]"; 
+
+		}
+
+		ret += "\n";
+
 		for (int w = 0; w < SIZE; ++w) {
 			for (int h = 0; h < SIZE; ++h) {
 				if (map[w][h].isBlock())
@@ -240,7 +360,7 @@ public class BoxMap {
 				else
 					ret += "[ ] ";
 			}
-			ret += "\n\n";
+			ret += "[" + w + "]\n\n";
 		}
 		return ret;
 	}
