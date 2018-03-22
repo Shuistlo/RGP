@@ -1,10 +1,12 @@
+package project;
+
+import java.awt.Point;
 import java.util.Stack;
+
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.robotics.RegulatedMotor;
-import lejos.robotics.SampleProvider;
 
 public class MotionModel {
-	private Stack<AstarCell> path;
 	private RegulatedMotor rightMotor, leftMotor;
 	private float[] gyroSample;
 	private EV3GyroSensor gyroSensor;
@@ -17,10 +19,8 @@ public class MotionModel {
 	*	@param	leftMotor	A RegulatedMotor.
 	*	@param	gyroSensor	An EV3GyroSensor.
 	*	@param	gyroSample	An array of floats that hold values from the GyroSensor.
-	*	@param	path	A stack of AstarCell that represent the (X,Y) co-ordinates the robot will move through.
 	*/
-	public MotionModel(RegulatedMotor rightMotor, RegulatedMotor leftMotor, EV3GyroSensor gyroSenser, float[] gyroSample, Stack<AstarCell> path){
-		this.path = path;
+	public MotionModel(RegulatedMotor rightMotor, RegulatedMotor leftMotor, EV3GyroSensor gyroSenser, float[] gyroSample){
 		this.rightMotor = rightMotor;
 		this.leftMotor = leftMotor;
 		this.gyroSensor = gyroSensor;
@@ -35,6 +35,18 @@ public class MotionModel {
 		while(rotMod != 0){
 			rightMotor.forward();
 			leftMotor.forward();
+			
+			rotMod = rightMotor.getTachoCount()%159;
+		}
+	}
+	
+	private void moveDiagonal(){
+		int rotMod = rightMotor.getTachoCount()%225;
+		while(rotMod != 0){
+			rightMotor.forward();
+			leftMotor.forward();
+			
+			rotMod = rightMotor.getTachoCount()%225;
 		}
 	}
 	
@@ -69,46 +81,48 @@ public class MotionModel {
 	*	turn() and moveStraight() to move through the path one
 	*	point at a time.
 	*
-	*	@param	currentPosition	AstarCell that respresents the 
+	*	@param	currentPosition	AstarCell that represents the 
 	*			current position of the robot.
 	*
 	*/
-	public void traversePath(AstarCell currentPosition){		
-		AstarCell t;
-		AstarCell currentPos = currentPosition;
+	public void traversePath(Point currentPosition, Stack<Point> path){		
+		Point currentPos = currentPosition;
+		Point t;
 		
 		while(!path.isEmpty()){
 			t = path.pop();
-			if(t.x == currentPos.x - 1){
-				turn(-45);
-				moveStraight();
+			if(t.x == currentPos.x + 1){
 				if(t.y == currentPos.y + 1){
-					turn(45);
-					moveStraight();
+					turn(0);
+					moveDiagonal();
 				} else if (t.y == currentPos.y - 1) {
+					turn(-90);
+					moveDiagonal();
+				} else {
 					turn(-45);
 					moveStraight();
-				} 
+				}
+				
 			} else if (t.x == currentPos.x) {
 				if(t.y == currentPos.y + 1){
 					turn(45);
+					moveStraight();
 				} else {
+					turn(-135);
+					moveStraight();
+				}
+				
+			} else if(t.x == currentPos.x - 1){
+				if(t.y == currentPos.y - 1){
+					turn(90);
+					moveDiagonal();
+				} else if (t.y == currentPos.y - 1) {
 					turn(135);
 					moveStraight();
 				}
-			} else {
-				turn(135);
-				moveStraight()
-				if(t.y == currentPos.y + 1){
-					turn(45);
-					moveStraight();
-				} else if (t.y == currentPos.y - 1) {
-					turn(-45);
-					moveStraight();
-				}
-			}
-			
 			currentPos = t;
+			}
 		}
 	}
+
 }
