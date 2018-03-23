@@ -101,7 +101,7 @@ public class BoxMap {
 				if (map[w][h].isBlock())
 					ret += "[X] ";
 				else if (-1 != path.indexOf(new Point(w, h)))
-					ret += "[8] ";
+					ret += "[H] ";
 				else if(map[w][h].isGoal())
 					ret += "[G] ";
 				else

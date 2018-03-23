@@ -112,18 +112,31 @@ public class Astar {
 		// Just for debug BoxMap
 	public static void main(String[] args) {
 		BoxMap map = new BoxMap();
+		map.insertBlueOuter(true);
+		//map.insertBlueInner(true);
+		//map.insertRedObstacle(true);
+		map.insertGreenObstacle(true);
+		map.wallOffLeft(true);
+		map.wallOffRight(true);
+
+		map.wallOffLeft(false);
+		map.wallOffRight(false);
+		//map.insertBlueOuter(false);
+		//map.insertBlueInner(false);
+		//map.insertRedObstacle(false);
+		//map.insertGreenObstacle(false);
 		// test block 1
 		//#metoo #time'sup #genderisover #78centsforeverydollar
 		// test block 2
-		map.setBlock(new Point(2, 2), new Point(10, 10));
+		//map.setBlock(new Point(2, 2), new Point(10, 10));
 		// test block 3
-		map.setBlock(new Point(3, 3), new Point(6, 6));
-		System.out.println(map);
+		//map.setBlock(new Point(3, 3), new Point(6, 6));
+		//System.out.println(map);
 		
 		// test path 1
 		System.out.println("test path 1");
-		Point start = new Point(0, 0);
-		Point end   = new Point(11, 11);
+		Point start = new Point(5, 5);
+		Point end   = new Point(15, 25);
 		
 		Astar slover = new Astar();
 		Stack<Point> path = slover.planning(map, start, end);
@@ -135,7 +148,7 @@ public class Astar {
 		System.out.println("The path:");
 		System.out.println(map.printPath(path));
 		
-		Point p = path.pop();
+		/*Point p = path.pop();
 		System.out.print(p);
 		while (!path.isEmpty()) {
 			p = path.pop();
@@ -165,7 +178,7 @@ public class Astar {
 		}
 		*/
 		// test path 3
-		System.out.println("test path 3");
+		/*System.out.println("test path 3");
 		start = new Point(1, 2);
 		end   = new Point(19, 12);
 		path = slover.planning(map, start, end);
@@ -182,8 +195,8 @@ public class Astar {
 		while (!path.isEmpty()) {
 			p = path.pop();
 			System.out.print("->" + p);
-		}
+		}*/	
+
 	}
-	
-	
+		
 }
