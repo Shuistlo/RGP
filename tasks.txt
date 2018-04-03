@@ -1,0 +1,33 @@
+SEMESTER 1:
+Shu - Hardware Design + Obstacle Avoidance 
+Ashley - Hardware Design + Color sensor orientation
+Eric - Color Sensor orientation + Obstacle Avoidance
+Andrei - PID line following + code integration
+
+WEEK 1 : Group formation and Hardware Design. Since we didn't have a clear idea of the robot worked and which sensors we needed this took some time
+WEEK 2 : Hardware Design
+WEEK 3 : Color Sensor testing and Orientation
+WEEK 4 : Some Hardware re-design to accomadate for the color sensor. Pseudocode for color sensor written
+WEEK 5 : PID Line following Pseudocode written. Hardware design reworked to include an ultrasonic sensor for PD obstacle avoidance
+WEEK 6 : PID Line following code imlemented with color sensor code.  PD Obstacle Avoidance Pseudocode written
+WEEK 7 : PID Line following tuning. PD obstacle avoidance code written
+WEEK 8 : PID Line following tuning 
+WEEK 9 : Code Integration and tuning
+WEEK 10 : Final tuning and Grading
+
+SEMESTER 2:
+Shu - Hardware Design + Path Planning
+Ashley - Hardware Design + Path Planning
+Eric - Localization + Differential Drive
+Andrei - Map + Differential Drive
+
+WEEK 1 : Hardware Design and Task Allocation
+WEEK 2 : Hardware Design. Initial Gyrosensor related tasks Pseudocode written
+WEEK 3 : Gyrosensor alignment tasks done and recorded
+WEEK 4 : Board dimensions measured and Map dimensions planned
+WEEK 5 : Map Code finished
+WEEK 6 : Localization  and Path Planning pseudocode written
+WEEK 7 : Pseudocode for Path Planning rewritten. Some Back end code for Path planning written
+WEEK 8 : Path Planning finished
+WEEK 9 : Localization + Differential Drive Code written
+WEEK 10 : Grading
