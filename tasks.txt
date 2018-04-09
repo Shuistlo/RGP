@@ -4,6 +4,15 @@ Ashley - Hardware Design + Color sensor orientation
 Eric - Color Sensor orientation + Obstacle Avoidance
 Andrei - PID line following + code integration
 
+SEMESTER 1 GOALS:
+Design a mobile, compact robot
+Experiment with sensors and determine which ones we need
+Code a PID line following controller 
+Code a PD obstacle avoidance controller
+Tune both controllers optimally 
+Enable the colorsensor to be able to read a red line to stop its motion
+End result: Robot should be able to successfully complete 4 laps in 5 minutes
+
 WEEK 1 : Group formation and Hardware Design. Since we didn't have a clear idea of the robot worked and which sensors we needed this took some time
 WEEK 2 : Hardware Design
 WEEK 3 : Color Sensor testing and Orientation
@@ -20,6 +29,16 @@ Shu - Hardware Design + Path Planning
 Ashley - Hardware Design + Path Planning
 Eric - Localization + Differential Drive
 Andrei - Map + Differential Drive
+
+SEMESTER 2 GOALS:
+Design a mobile, compact robot
+Experiment with the gyrosensor (unused in first task)
+Create a map of the arena 
+Translate the map into a readable format for the robot
+Create an A* algorithm the robot can use to plan a path in the arena
+Localization
+Differential Drive
+End Result: Robot should be able to successfully navigate the arena from the starting point to the goal and back twice in 5 minutes
 
 WEEK 1 : Hardware Design and Task Allocation
 WEEK 2 : Hardware Design. Initial Gyrosensor related tasks Pseudocode written
