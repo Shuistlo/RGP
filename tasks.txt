@@ -24,6 +24,8 @@ WEEK 8 : PID Line following tuning
 WEEK 9 : Code Integration and tuning
 WEEK 10 : Final tuning and Grading
 
+Final Outcome: Robot ran three laps but was unable to read a starting line.
+
 SEMESTER 2:
 Shu - Hardware Design + Path Planning
 Ashley - Hardware Design + Path Planning
@@ -50,3 +52,6 @@ WEEK 7 : Pseudocode for Path Planning rewritten. Some Back end code for Path pla
 WEEK 8 : Path Planning finished
 WEEK 9 : Localization + Differential Drive Code written
 WEEK 10 : Grading
+
+Final Outcome: Robot was unable to localize correctly during grading.
+Video Reshoot: Robot was able to navigate to the goal and back to its original starting point
