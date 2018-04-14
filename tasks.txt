@@ -5,12 +5,12 @@ Eric - Color Sensor orientation + Obstacle Avoidance
 Andrei - PID line following + code integration
 
 SEMESTER 1 GOALS:
-Design a mobile, compact robot
-Experiment with sensors and determine which ones we need
-Code a PID line following controller 
-Code a PD obstacle avoidance controller
-Tune both controllers optimally 
-Enable the colorsensor to be able to read a red line to stop its motion
+1. Robot design and assembly - Robot should be sufficiently compact so as to navigate smoothly around the track. Should be designed for optimized mobility, and design should pose no limiting factor to general movability.
+2. Research and field testing the color sensor - Get farmiliar with EV3 color sensor. Look at all sensor modes and methods in API. Perform some preliminary tests to determine which mode will be the most suitable. Then establish how to use that sensor mode for the PID system.
+3. Making the PID system - Create a PID system that will allow the robot to follow the line smoothly, with no jerking side to side. Achieving this requires PID constants to be optimized later through trial and error. 
+4. Obstacle avoidance controller - Create a PD controller to allow the robot to navigate round the obstacles. Test the obstacle circumnavigation at various different distances from the obstacle. Identify edge cases and patch them over with contingency code.
+5. Tune both controllers optimally - Use rigorous process of trial and error to find optimal configuration of controller values for both sysems. Start by setting all constants to 0, then increase Kp as much as possible until the motion of the robot becomes too erratic, then increase the other 2 one at a time. Do this until the system is smooth and stable and can work at a reasonably high speed
+Enable the colorsensor to be able to read a red line to stop its motion - Using the color sensors red mode (which we have decided to use for the line following PID controller) figure out a way to concretely identify the color red and code a sequence of actions that will allow it to pass over the line, and then resume the line following code as normal.
 End result: Robot should be able to successfully complete 4 laps in 5 minutes
 
 WEEK 1 : Group formation and Hardware Design. Since we didn't have a clear idea of the robot worked and which sensors we needed this took some time
