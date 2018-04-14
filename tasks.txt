@@ -31,16 +31,15 @@ Shu - Hardware Design + Path Planning
 Ashley - Hardware Design + Path Planning
 Eric - Localization + Differential Drive
 Andrei - Map + Differential Drive
-
 SEMESTER 2 GOALS:
-Design a mobile, compact robot
-Experiment with the gyrosensor (unused in first task)
-Create a map of the arena 
-Translate the map into a readable format for the robot
-Create an A* algorithm the robot can use to plan a path in the arena
-Localization
-Differential Drive
-End Result: Robot should be able to successfully navigate the arena from the starting point to the goal and back twice in 5 minutes
+1. Design a robot. The robot should be compact enough to navigate tight spaces yet mobile enough to be able to make tight turns without falling over.
+2. Experiment with the gyrosensor (The gyrosensor was not used in the first task). Discover how the gyrosensor works, how consistent it is, and how to best work around its lack of accuracy. 
+3. Create a map of the arena. The map should be in java code and should correctly represent the arena and its obstacles to scale without being too overwhelming.
+4. Translate the map into a readable format for the robot. The robot should be able to read the map and figure out a way to navigate the obstacles. 
+5. Create an A* algorithm the robot can use to plan a path in the arena.
+6. Localize the robot so that it is aware of its current location in the arena.
+7. Translate the A* algorithm and Localization into a Differential Drive so that the robot can control its speed and direction given instructions.
+End Result: Robot should be able to successfully navigate the arena from the starting point to the goal and back twice in 5 minutes.
 
 WEEK 1 : Hardware Design and Task Allocation
 WEEK 2 : Hardware Design. Initial Gyrosensor related tasks Pseudocode written
@@ -54,4 +53,4 @@ WEEK 9 : Localization + Differential Drive Code written
 WEEK 10 : Grading
 
 Final Outcome: Robot was unable to localize correctly during grading.
-Video Reshoot: Robot was able to navigate to the goal and back to its original starting point
+Video Reshoot: Robot was able to navigate to the goal and back to its original starting point.
